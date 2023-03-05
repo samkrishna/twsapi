@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
+﻿/* Copyright (C) 2019 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 #pragma once
 #ifndef TWS_API_SAMPLES_TESTCPPCLIENT_CONTRACTSAMPLES_H
@@ -20,6 +20,7 @@ public:
 	static Contract EuropeanStock();
 	static Contract OptionAtIse();
 	static Contract USStock();
+	static Contract etf();
 	static Contract USStockAtSmart();
 	static Contract IBMUSStockAtSmart();
 	static Contract USStockWithPrimaryExch();
@@ -29,7 +30,6 @@ public:
 	static Contract Commodity();
 	static Contract USOptionContract();
 	static Contract OptionAtBox();
-	static Contract NormalOption();
 	static Contract OptionWithTradingClass();
 	static Contract OptionWithLocalSymbol();
 	static Contract DutchWarrant();
@@ -50,11 +50,17 @@ public:
 	static Contract BTbroadtapeNewsFeed();
 	static Contract BZbroadtapeNewsFeed();
 	static Contract FLYbroadtapeNewsFeed();
-	static Contract MTbroadtapeNewsFeed();
+	//static Contract MTbroadtapeNewsFeed();
 	static Contract ContFut();
 	static Contract ContAndExpiringFut();
 	static Contract JefferiesContract();
 	static Contract CSFBContract();
+	static Contract Warrants();
+	static Contract IBKRATSContract();
+	static Contract CryptoContract();
+	static Contract StockWithIPOPrice();
+	static Contract ByFIGI();
+	static Contract ByIssuerId();
 };
 
 #endif

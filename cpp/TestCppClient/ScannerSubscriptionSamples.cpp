@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
+﻿/* Copyright (C) 2019 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 #include "StdAfx.h"
 
@@ -29,15 +29,15 @@ ScannerSubscription ScannerSubscriptionSamples::TopPercentGainersIbis()
 	return scanSub;
 }
 
-ScannerSubscription ScannerSubscriptionSamples::MostActiveFutSoffex()
+ScannerSubscription ScannerSubscriptionSamples::MostActiveFutEurex()
 {
-	//! [mostactivefutsoffex]
-	//Most active futures at SOFFEX
+	//! [mostactivefuteurex]
+	//Most active futures at EUREX
 	ScannerSubscription scanSub;
 	scanSub.instrument = "FUT.EU";
-    scanSub.locationCode = "FUT.EU.SOFFEX";
+    scanSub.locationCode = "FUT.EU.EUREX";
     scanSub.scanCode = "MOST_ACTIVE";
-	//! [mostactivefutsoffex]
+	//! [mostactivefuteurex]
 	return scanSub;
 }
 
@@ -50,5 +50,17 @@ ScannerSubscription ScannerSubscriptionSamples::HighOptVolumePCRatioUSIndexes()
     scanSub.locationCode = "IND.US";
     scanSub.scanCode = "HIGH_OPT_VOLUME_PUT_CALL_RATIO";
 	//! [highoptvolume]
+	return scanSub;
+}
+
+ScannerSubscription ScannerSubscriptionSamples::ComplexOrdersAndTrades()
+{
+	//! [combolatesttrade]
+	//Complex orders and trades scan, latest trades
+	ScannerSubscription scanSub;
+	scanSub.instrument = "NATCOMB";
+    scanSub.locationCode = "NATCOMB.OPT.US";
+    scanSub.scanCode = "COMBO_LATEST_TRADE";
+	//! [combolatesttrade]
 	return scanSub;
 }

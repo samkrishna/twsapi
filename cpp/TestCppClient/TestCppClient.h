@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
+﻿/* Copyright (C) 2019 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
 #pragma once
@@ -36,8 +36,8 @@ enum State {
 	ST_CONTRACTOPERATION_ACK,
 	ST_MARKETSCANNERS,
 	ST_MARKETSCANNERS_ACK,
-	ST_REUTERSFUNDAMENTALS,
-	ST_REUTERSFUNDAMENTALS_ACK,
+	ST_FUNDAMENTALS,
+	ST_FUNDAMENTALS_ACK,
 	ST_BULLETINS,
 	ST_BULLETINS_ACK,
 	ST_ACCOUNTOPERATIONS,
@@ -102,7 +102,11 @@ enum State {
     ST_REQTICKBYTICKDATA_ACK,
 	ST_WHATIFSAMPLES,
 	ST_WHATIFSAMPLES_ACK,
-	ST_IDLE
+	ST_IDLE,
+	ST_IBKRATSSAMPLE,
+	ST_IBKRATSSAMPLE_ACK,
+	ST_WSH,
+	ST_WSH_ACK
 };
 
 //! [ewrapperimpl]
@@ -142,7 +146,7 @@ private:
 	void hedgeSample();
 	void contractOperations();
 	void marketScanners();
-	void reutersFundamentals();
+	void fundamentals();
 	void bulletins();
 	void testAlgoSamples();
 	void financialAdvisorOrderSamples();
@@ -165,6 +169,8 @@ private:
     void reqHistoricalTicks();
     void reqTickByTickData();
 	void whatIfSamples();
+	void ibkratsSample();
+	void wshCalendarOperations();
 
 	void reqCurrentTime();
 
@@ -188,7 +194,7 @@ private:
 	time_t m_sleepDeadline;
 
 	OrderId m_orderId;
-	EReader *m_pReader;
+	std::unique_ptr<EReader> m_pReader;
     bool m_extraAuth;
 	std::string m_bboExchange;
 };

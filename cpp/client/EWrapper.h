@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
+﻿/* Copyright (C) 2019 Interactive Brokers LLC. All rights reserved. This code is subject to the terms
  * and conditions of the IB API Non-Commercial License or the IB API Commercial License, as applicable. */
 
 #pragma once
@@ -9,6 +9,7 @@
 #include <set>
 #include <map>
 #include <tuple>
+#include <vector>
 #include "CommonDefs.h"
 #include "SoftDollarTier.h"
 #include "DepthMktDataDescription.h"
@@ -21,6 +22,8 @@
 #include "HistoricalTick.h"
 #include "HistoricalTickBidAsk.h"
 #include "HistoricalTickLast.h"
+#include "Decimal.h"
+#include "HistoricalSession.h"
 
 enum TickType { BID_SIZE, BID, ASK, ASK_SIZE, LAST, LAST_SIZE,
 				HIGH, LOW, VOLUME, CLOSE,
@@ -103,6 +106,20 @@ enum TickType { BID_SIZE, BID, ASK, ASK_SIZE, LAST, LAST_SIZE,
 				FUTURES_OPEN_INTEREST,
 				AVG_OPT_VOLUME,
 				DELAYED_LAST_TIMESTAMP,
+				SHORTABLE_SHARES,
+				DELAYED_HALTED,
+				REUTERS_2_MUTUAL_FUNDS,
+				ETF_NAV_CLOSE,
+				ETF_NAV_PRIOR_CLOSE,
+				ETF_NAV_BID,
+				ETF_NAV_ASK,
+				ETF_NAV_LAST,
+				ETF_FROZEN_NAV_LAST,
+				ETF_NAV_HIGH,
+				ETF_NAV_LOW,
+				SOCIAL_MARKET_ANALYTICS,
+				ESTIMATED_IPO_MIDPOINT,
+				FINAL_IPO_LAST,
 				NOT_SET };
 
 typedef std::map<int, std::tuple<std::string, char>> SmartComponentsMap;
