@@ -147,7 +147,7 @@ void EReaderST::onReceive()
 
 fail:
 	m_pClientSocket->getWrapper()->error(
-		NO_VALID_ID, SOCKET_EXCEPTION.code(), errmsg );
+		NO_VALID_ID, SOCKET_EXCEPTION.code(), errmsg, "" );
 	m_pClientSocket->onClose();
 	return;
 }

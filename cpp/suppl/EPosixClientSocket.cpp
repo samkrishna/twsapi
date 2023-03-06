@@ -215,7 +215,7 @@ bool EPosixClientSocket::eConnect2( const char *host, unsigned int port,
 	}
 
 	if( m_fd == -2) {
-		getWrapper()->error( NO_VALID_ID, FAIL_CREATE_SOCK.code(), FAIL_CREATE_SOCK.msg());
+		getWrapper()->error( NO_VALID_ID, FAIL_CREATE_SOCK.code(), FAIL_CREATE_SOCK.msg(), "");
 		goto end;
 	}
 
@@ -320,7 +320,7 @@ faildisconnect:
 
 failsocket:
 	assert( !isSocketOK() && !isConnected());
-	getWrapper()->error( NO_VALID_ID, CONNECT_FAIL.code(), errmsg );
+	getWrapper()->error( NO_VALID_ID, CONNECT_FAIL.code(), errmsg, "" );
 
 end:
 	m_in_connect = false;
@@ -342,7 +342,7 @@ void EPosixClientSocket::encodeMsgLen(std::string& msg, unsigned offset) const
 	assert( msg.size() > offset + HEADER_LEN);
 	unsigned len = msg.size() - HEADER_LEN - offset;
 	if( len > MAX_MSG_LEN) {
-		m_pEWrapper->error( NO_VALID_ID, BAD_LENGTH.code(), BAD_LENGTH.msg());
+		m_pEWrapper->error( NO_VALID_ID, BAD_LENGTH.code(), BAD_LENGTH.msg(), "" );
 		return;
 	}
 
@@ -421,7 +421,7 @@ void EPosixClientSocket::serverVersion(int version, const char *time) {
     m_TwsTime = time;
     if( usingV100Plus() ? (m_serverVersion < MIN_CLIENT_VER || m_serverVersion > MAX_CLIENT_VER) : m_serverVersion < MIN_SERVER_VER_SUPPORTED ) {
         eDisconnect();
-        getWrapper()->error( NO_VALID_ID, UNSUPPORTED_VERSION.code(), UNSUPPORTED_VERSION.msg());
+        getWrapper()->error( NO_VALID_ID, UNSUPPORTED_VERSION.code(), UNSUPPORTED_VERSION.msg(), "" );
         return;
     }
 
@@ -431,8 +431,10 @@ void EPosixClientSocket::serverVersion(int version, const char *time) {
 
 void EPosixClientSocket::redirect(const char *host, int port) {
 	/* Original implementation was broken. Let's see if this will ever happen */
-	getWrapper()->error( NO_VALID_ID, 9999,
-		"WTF, got redirect request ... ignore and see what happens.");
+	getWrapper()->error( NO_VALID_ID, 
+	                     9999, 
+	                     "WTF, got redirect request ... ignore and see what happens.", 
+	                     "" );
 }
 
 
@@ -482,7 +484,7 @@ void EPosixClientSocket::on_send_errno(int xerrno)
 	}
 
 	errmsg = strerror(xerrno);
-	getWrapper()->error( NO_VALID_ID, SOCKET_EXCEPTION.code(), errmsg );
+	getWrapper()->error( NO_VALID_ID, SOCKET_EXCEPTION.code(), errmsg, "" );
 	eDisconnect();
 	getWrapper()->connectionClosed();
 }
