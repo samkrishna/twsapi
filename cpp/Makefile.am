@@ -1,6 +1,6 @@
 AM_CPPFLAGS = -DDEBUG -D_GNU_SOURCE
 AM_CXXFLAGS = $(DEFAULT_CXXFLAGS)
-AM_LDFLAGS = client/lib/libbid.a
+AM_LDFLAGS = /usr/local/lib/libbid.a
 
 header_HEADERS =
 noinst_HEADERS =
