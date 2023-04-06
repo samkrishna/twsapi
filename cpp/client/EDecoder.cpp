@@ -2707,12 +2707,14 @@ bool EDecoder::DecodeField(char& charValue,
 
 bool EDecoder::DecodeField(Decimal& decimalValue, const char*& ptr, const char* endPtr)
 {
-	if (!CheckOffset(ptr, endPtr))
+	if (!CheckOffset(ptr, endPtr)) {
 		return false;
+	}
 	const char* fieldBeg = ptr;
 	const char* fieldEnd = FindFieldEnd(fieldBeg, endPtr);
-	if (!fieldEnd)
+	if (!fieldEnd) {
 		return false;
+	}
 	decimalValue = stringToDecimal(fieldBeg);
 	ptr = ++fieldEnd;
 	return true;
@@ -2721,8 +2723,9 @@ bool EDecoder::DecodeField(Decimal& decimalValue, const char*& ptr, const char* 
 bool EDecoder::DecodeFieldMax(int& intValue, const char*& ptr, const char* endPtr)
 {
 	std::string stringValue;
-	if( !DecodeField(stringValue, ptr, endPtr))
+	if( !DecodeField(stringValue, ptr, endPtr)) {
 		return false;
+	}
 	intValue = stringValue.empty() ? UNSET_INTEGER : atoi(stringValue.c_str());
 	return true;
 }
@@ -2730,8 +2733,9 @@ bool EDecoder::DecodeFieldMax(int& intValue, const char*& ptr, const char* endPt
 bool EDecoder::DecodeFieldMax(long& longValue, const char*& ptr, const char* endPtr)
 {
 	int intValue;
-	if( !DecodeFieldMax(intValue, ptr, endPtr))
+	if( !DecodeFieldMax(intValue, ptr, endPtr)) {
 		return false;
+	}
 	longValue = intValue;
 	return true;
 }
@@ -2739,8 +2743,9 @@ bool EDecoder::DecodeFieldMax(long& longValue, const char*& ptr, const char* end
 bool EDecoder::DecodeFieldMax(double& doubleValue, const char*& ptr, const char* endPtr)
 {
 	std::string stringValue;
-	if( !DecodeField(stringValue, ptr, endPtr))
+	if( !DecodeField(stringValue, ptr, endPtr)) {
 		return false;
+	}
 	doubleValue = stringValue.empty() ? UNSET_DOUBLE : atof(stringValue.c_str());
 	return true;
 }
