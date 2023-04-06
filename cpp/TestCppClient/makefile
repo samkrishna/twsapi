@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++11
+CXXFLAGS=-pthread -Wall -Wno-switch -Wpedantic -Wno-unused-function -std=c++11 -g
 ROOT_DIR=../../cpp
 BASE_SRC_DIR=${ROOT_DIR}/client
 INCLUDES=-I${BASE_SRC_DIR} -I${ROOT_DIR}
