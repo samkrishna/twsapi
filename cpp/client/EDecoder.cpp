@@ -890,7 +890,7 @@ const char* EDecoder::processHistoricalDataMsg(const char* ptr, const char* endP
 		DECODE_FIELD( bar.high);
 		DECODE_FIELD( bar.low);
 		DECODE_FIELD( bar.close);
-        DECODE_FIELD( bar.volume);
+		DECODE_FIELD( bar.volume);
 		DECODE_FIELD( bar.wap);
 
         if (m_serverVersion < MIN_SERVER_VER_SYNT_REALTIME_BARS) {
