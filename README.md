@@ -28,7 +28,7 @@ Installation
  don't forget to type `autoreconf -vfi` first.
 
 ```bash
- ./configure
+ ./configure --enable-iborig
  make
  make install
 ```
