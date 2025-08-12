@@ -796,21 +796,23 @@ void TestCppClient::orderOperations()
 	/*** Requesting the next valid id ***/
 	//! [reqids]
 	//The parameter is always ignored.
-	m_pClient->reqIds(-1);
+	//m_pClient->reqIds(-1);
 	//! [reqids]
 	//! [reqallopenorders]
-	m_pClient->reqAllOpenOrders();
+	//m_pClient->reqAllOpenOrders();
 	//! [reqallopenorders]
 	//! [reqautoopenorders]
-	m_pClient->reqAutoOpenOrders(true);
+	//m_pClient->reqAutoOpenOrders(true);
 	//! [reqautoopenorders]
 	//! [reqopenorders]
-	m_pClient->reqOpenOrders();
+	//m_pClient->reqOpenOrders();
 	//! [reqopenorders]
 
 	/*** Placing/modifying an order - remember to ALWAYS increment the nextValidId after placing an order so it can be used for the next one! ***/
     //! [order_submission]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::USStock(), OrderSamples::LimitOrder("SELL", stringToDecimal("1"), 50));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::USStock(), OrderSamples::LimitOrder("SELL", stringToDecimal("1"), 50));
+    Order sellEurGbp = OrderSamples::MarketOrder("SELL", stringToDecimal("100000"));
+	m_pClient->placeOrder(m_orderId++, ContractSamples::EurGbpFx(), sellEurGbp);
     //! [order_submission]
 
 	//m_pClient->placeOrder(m_orderId++, ContractSamples::OptionAtBox(), OrderSamples::Block("BUY", stringToDecimal("50"), 20));
@@ -837,56 +839,56 @@ void TestCppClient::orderOperations()
 	//m_pClient->placeOrder(m_orderId++, ContractSamples::USStock(), OrderSamples::TrailingStopLimit("BUY", stringToDecimal("100"), 2, 5, 50));
 	
 	//! [place_midprice]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::USStockAtSmart(), OrderSamples::Midprice("BUY", stringToDecimal("1"), 150));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::USStockAtSmart(), OrderSamples::Midprice("BUY", stringToDecimal("1"), 150));
 	//! [place_midprice]
 	
 	//! [place order with cashQty]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::USStockAtSmart(), OrderSamples::LimitOrderWithCashQty("BUY", 111.11, 5000));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::USStockAtSmart(), OrderSamples::LimitOrderWithCashQty("BUY", 111.11, 5000));
 	//! [place order with cashQty]
 
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 
 	/*** Cancel one order ***/
 	//! [cancelorder]
-	m_pClient->cancelOrder(m_orderId-1, "");
+// 	m_pClient->cancelOrder(m_orderId-1, "");
 	//! [cancelorder]
 	
 	/*** Cancel all orders for all accounts ***/
 	//! [reqglobalcancel]
-	m_pClient->reqGlobalCancel();
+// 	m_pClient->reqGlobalCancel();
 	//! [reqglobalcancel]
 
 	/*** Request the day's executions ***/
 	//! [reqexecutions]
-	m_pClient->reqExecutions(10001, ExecutionFilter());
+// 	m_pClient->reqExecutions(10001, ExecutionFilter());
 	//! [reqexecutions]
 
 	//! [reqcompletedorders]
-	m_pClient->reqCompletedOrders(false);
+// 	m_pClient->reqCompletedOrders(false);
 	//! [reqcompletedorders]
 
 	//! [order_submission]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::CryptoContract(), OrderSamples::LimitOrder("BUY", stringToDecimal("0.12345678"), 3700));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::CryptoContract(), OrderSamples::LimitOrder("BUY", stringToDecimal("0.12345678"), 3700));
 	//! [order_submission]
 
 	//! [manual_order_time]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::USStockAtSmart(), OrderSamples::LimitOrderWithManualOrderTime("BUY", stringToDecimal("100"), 111.11, "20220314-13:00:00"));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::USStockAtSmart(), OrderSamples::LimitOrderWithManualOrderTime("BUY", stringToDecimal("100"), 111.11, "20220314-13:00:00"));
 	//! [manual_order_time]
 
 	//! [manual_order_cancel_time]
-	m_pClient->cancelOrder(m_orderId - 1, "20220314-19:00:00");
+// 	m_pClient->cancelOrder(m_orderId - 1, "20220314-19:00:00");
 	//! [manual_order_cancel_time]
 
 	//! [pegbest_up_to_mid_order_submission]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::IBKRATSContract(), OrderSamples::PegBestUpToMidOrder("BUY", stringToDecimal("100"), 111.11, 100, 200, 0.02, 0.025));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::IBKRATSContract(), OrderSamples::PegBestUpToMidOrder("BUY", stringToDecimal("100"), 111.11, 100, 200, 0.02, 0.025));
 	//! [pegbest_up_to_mid_order_submission]
 
 	//! [pegbest_order_submission]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::IBKRATSContract(), OrderSamples::PegBestOrder("BUY", stringToDecimal("100"), 111.11, 100, 200, 0.03));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::IBKRATSContract(), OrderSamples::PegBestOrder("BUY", stringToDecimal("100"), 111.11, 100, 200, 0.03));
 	//! [pegbest_order_submission]
 
 	//! [pegmid_order_submission]
-	m_pClient->placeOrder(m_orderId++, ContractSamples::IBKRATSContract(), OrderSamples::PegMidOrder("BUY", stringToDecimal("100"), 111.11, 100, 0.02, 0.025));
+// 	m_pClient->placeOrder(m_orderId++, ContractSamples::IBKRATSContract(), OrderSamples::PegMidOrder("BUY", stringToDecimal("100"), 111.11, 100, 0.02, 0.025));
 	//! [pegmid_order_submission]
 
 	m_state = ST_ORDEROPERATIONS_ACK;
@@ -1479,12 +1481,12 @@ void TestCppClient::nextValidId( OrderId orderId)
 	//m_state = ST_REALTIMEBARS;
 	//m_state = ST_MARKETDATATYPE;
 	//m_state = ST_HISTORICALDATAREQUESTS;
-	m_state = ST_CONTRACTOPERATION;
+	//m_state = ST_CONTRACTOPERATION;
 	//m_state = ST_MARKETSCANNERS;
 	//m_state = ST_FUNDAMENTALS;
 	//m_state = ST_BULLETINS;
 	//m_state = ST_ACCOUNTOPERATIONS;
-	//m_state = ST_ORDEROPERATIONS;
+	m_state = ST_ORDEROPERATIONS;
 	//m_state = ST_OCASAMPLES;
 	//m_state = ST_CONDITIONSAMPLES;
 	//m_state = ST_BRACKETSAMPLES;
